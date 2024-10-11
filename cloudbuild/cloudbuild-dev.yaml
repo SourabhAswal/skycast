@@ -1,0 +1,35 @@
+# Author @ Sourabh Aswal  @Senior Devops 
+# CLOUD BUILD FILE FOR MANAGE
+steps:
+  
+
+  # Ensure that COMMIT_SHA is set
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        if [ -z "$COMMIT_SHA" ]; then
+          echo "COMMIT_SHA environment variable is not set."
+          exit 1
+        fi
+
+  # Build app
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/realcoderzai/dev-skycast:$COMMIT_SHA', '.']
+    id: BUILD
+
+  # Storage of the image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/realcoderzai/dev-skycast:$COMMIT_SHA']
+    id: STORAGE
+
+  # Deploy
+ 
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+
+#Changes in CLOUD BUILD FILES 
+#FIRST CHANGES
