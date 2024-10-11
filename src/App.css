@@ -1,0 +1,147 @@
+/* General reset */
+* {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background and layout settings */
+html {
+  background-color: #e0f7fa; /* Fallback color */
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('weatherpic.jpeg'); /* Your background image */
+  background-size: contain; /* Scales the image to fit within the viewport */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevents repeating the background image */
+}
+
+
+/* App name styling */
+.app-name {
+  font-size: 2.5rem;
+  color: #0277bd;
+  margin-bottom: 16px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* App Container */
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  min-height: 500px;
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for readability */
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border: 2px solid #0288d1;
+}
+
+/* Search bar styling */
+.city-search {
+  width: 100%;
+  max-width: 400px;
+  border: 2px solid #0288d1;
+  outline: none;
+  border-radius: 25px;
+  font-size: 16px;
+  background-color: #e1f5fe;
+  padding: 12px 20px;
+  transition: width 0.4s ease-in-out;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.city-search:focus {
+  width: 100%;
+  border-color: #01579b;
+}
+
+/* City name display */
+.city-name {
+  font-size: 1.75rem;
+  color: #01579b;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Date display */
+.date {
+  font-size: 1.25em;
+  font-weight: 500;
+  color: #0277bd;
+  margin-bottom: 20px;
+}
+
+/* Temperature display with icon */
+.icon-temp {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #0288d1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.deg {
+  font-size: 1.5rem;
+  vertical-align: super;
+  color: #0288d1;
+}
+
+/* Description and wind speed */
+.des-wind {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+  margin-top: 10px;
+}
+
+/* Error message */
+.error-message {
+  color: #d32f2f;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* Loader settings */
+.Loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.Loader > div {
+  margin: 0 auto;
+}
+
+/* Weather icon styling */
+.weather-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-icon img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
