@@ -1,21 +1,37 @@
-FROM node:14.17 as react-build
+FROM node:18-alpine AS build
 
+# Install build dependencies
+RUN apk add --no-cache python3 make g++ 
+
+# Set the working directory
 WORKDIR /app
+
+# Copy package.json and package-lock.json files
 COPY package*.json ./
 
+# Install dependencies
 RUN npm install
-COPY . ./
 
+# Copy the rest of the application code
+COPY . .
+
+# Build the React app
 RUN npm run build
 
-# server environment
+# Step 2: Use nginx to serve the React app
 FROM nginx:alpine
-COPY nginx.conf /etc/nginx/conf.d/configfile.template
 
-# Change '/app/dist' to '/app/build'
-COPY --from=react-build /app/build /usr/share/nginx/html
+# Remove the default nginx config
+RUN rm /etc/nginx/conf.d/default.conf
 
-ENV PORT 3000
-ENV HOST 0.0.0.0
+# Copy custom nginx configuration
+COPY nginx.conf /etc/nginx/conf.d
+
+# Copy the React build output to nginx HTML directory
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Expose port 3000
 EXPOSE 3000
-CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/configfile.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+
+# Start nginx server
+CMD ["nginx", "-g", "daemon off;"]
